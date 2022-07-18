@@ -1,0 +1,40 @@
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.diffplug.spotless" version "6.8.0"
+}
+
+////////////////////////////
+// Configurations Section //
+////////////////////////////
+group = "com.craftinginterpreters"
+version = "0.1"
+sourceCompatibility = 1.17
+targetCompatibility = 1.17
+
+// Formatting linter
+spotless {
+    java {
+        removeUnusedImports()
+        googleJavaFormat()
+    }
+}
+
+//////////////////////////
+// Dependencies Section //
+//////////////////////////
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+///////////////////
+// Tasks Section //
+///////////////////
+assemble.dependsOn(shadowJar)
+
+jar {
+    enabled false
+}
